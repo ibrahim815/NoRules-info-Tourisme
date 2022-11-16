@@ -1,0 +1,107 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block body %}
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <div class="search_tour">
+        <div class="wrap">
+            <div class="wrap_float">
+                {{ form_start(form, {'attr': {'id': 'form'}}) }}
+                <div class="search_tour_form">
+                    <h2 class="section_subtitle">
+                        BIENVENUE &#128522;
+                    </h2>
+                    <p class="section_title">
+                        MODIFIER VOTRE RESERVATION :
+                    </p>
+                    <div class="fields__block">
+                        <div class="fields">
+                            <div class="field">
+                                <div class="label">DATE DEBUT : </div>
+                                <div class="field_wrap ">
+
+                                    {{ form_widget(form.datedeb, { 'attr': {'class': 'field_wrap'} }) }}
+                                </div>
+                                {{ form_errors (form.datedeb) }}
+                            </div>
+                            <div class="field">
+                                <div class="label">DATE FIN : </div>
+                                <div class="field_wrap ">
+                                    {{ form_widget(form.datefin, { 'attr': {'class': 'field_wrap'} }) }}
+
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label">NOMBRE DE PLACE : </div>
+                                <div class="field_wrap ">
+                                    {{ form_widget(form.nbrplace, { 'attr': {'class': 'field_wrap'} }) }}
+                                    {{ form_errors(form.nbrplace) }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="label">PRIX : </div>
+                                <div class="field_wrap ">
+                                    {{ form_widget(form.prix, { 'attr': {'class': 'field_wrap'} }) }}
+                                    {{ form_errors(form.prix) }}
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="field">
+                      <pre></pre>  <input type="submit" value="MODIFIER &#128521"" class="btn btn-success"/>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const form= document.getElementById('form');
+        const errorElement= document.getElementById('errorElement');
+        var now = new Date();
+        form.addEventListener('submit',(e)=> {
+            let message = [];
+
+
+
+            const year= document.getElementById('reservationhotel_datedeb_year').value;
+            const month= document.getElementById('reservationhotel_datedeb_month').value;
+            const day= document.getElementById('reservationhotel_datedeb_day').value;
+            const yearf= document.getElementById('reservationhotel_datefin_year').value;
+            const monthf= document.getElementById('reservationhotel_datefin_month').value;
+            const dayf= document.getElementById('reservationhotel_datefin_day').value;
+
+            var dated = new Date(year,month,day)
+            var datef = new Date(yearf,monthf,dayf)
+
+
+
+
+            console.log('whyy'+dated)
+            console.log('whyy'+datef)
+
+            if((dated < now)|| (dated > datef)){
+                swal("ATTENTION !!!","Vérifier votre date ","error" );
+                message.push('Vérifier Votre date')
+            }
+            console.log(message)
+            if(message.length> 0){
+                e.preventDefault();
+                errorElement.innerText = message.join(', ')
+            }
+        })
+    </script>
+
+
+
+{% endblock %}

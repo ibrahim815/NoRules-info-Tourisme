@@ -1,0 +1,103 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block body %}
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <div class="search_tour">
+        <div class="wrap">
+            <div class="wrap_float">
+                {{ form_start(form, {'attr': {'id': 'form'}}) }}
+                <div class="search_tour_form">
+                    <h2 class="section_subtitle">
+                        BIENVENUE &#128522;
+                    </h2>
+                    <p class="section_title">
+                        MODIFIER VOTRE RESERVATION :
+                    </p>
+                    <div class="fields__block">
+                        <div class="fields">
+                            <div class="field">
+                                <div class="label">HEURE :</div>
+                                <div class="field_wrap ">
+
+                                    {{ form_widget(form.heureres, { 'attr': {'class': 'field_wrap select_field'} }) }}
+                                </div>
+                                {{ form_errors (form.heureres) }}
+                            </div>
+                            <div class="field">
+                                <div class="label">DATE DEBUT :</div>
+                                <div class="field_wrap ">
+                                    {{ form_widget(form.datedeb, { 'attr': {'class': 'field_wrap'} }) }}
+
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="label">DATE FIN :</div>
+                                <div class="field_wrap ">
+                                    {{ form_widget(form.datefin, { 'attr': {'class': 'field_wrap'} }) }}<br><br><br><br>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="field">
+                       <pre>  <input type="submit" value="MODIFIER &#128521" class="btn btn-success"/> </pre>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const form= document.getElementById('form');
+        const errorElement= document.getElementById('errorElement');
+        var now = new Date();
+        form.addEventListener('submit',(e)=> {
+            let message = [];
+
+            var date = new Date(document.getElementById('reservation_datedeb').value);
+
+
+            const year= document.getElementById('reservation_datedeb_year').value;
+            const month= document.getElementById('reservation_datedeb_month').value;
+            const day= document.getElementById('reservation_datedeb_day').value;
+            const yearf= document.getElementById('reservation_datefin_year').value;
+            const monthf= document.getElementById('reservation_datefin_month').value;
+            const dayf= document.getElementById('reservation_datefin_day').value;
+
+            var dated = new Date(year,month,day)
+            var datef = new Date(yearf,monthf,dayf)
+
+
+
+
+            console.log('whyy'+dated)
+
+            console.log(date , ' ', now)
+            if((dated < now)|| (dated > datef)){
+                swal("ATTENTION !!!","MODIFIER VOTRE DATE CONVENABLEMENT ","error" );
+                message.push(' MODIFIER VOTRE DATE CONVENABLEMENT')
+            }
+            console.log(message)
+            if(message.length> 0){
+                e.preventDefault();
+                errorElement.innerText = message.join(', ')
+            }
+        })
+    </script>
+
+
+
+{% endblock %}

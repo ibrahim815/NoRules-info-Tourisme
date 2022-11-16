@@ -1,0 +1,68 @@
+{% extends 'front.html.twig' %}
+
+
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+<div class="popular_destination__section mainpage-slider">
+    <div class="wrap">
+        <div class="wrap_float">
+            <div class="top_part">
+                <div class="top_part_left">
+                    <div class="section_subtitle">
+                        CHOIX D'HOTEL :
+                    </div>
+                    <h2 class="section_title">
+                        POPULAR DESTINATIONS :
+                    </h2>
+                </div>
+                <div class="top_part_right">
+                    <a href="destinations.html" class="btn">
+                        <span>View all destinations</span>
+                    </a>
+                    <div class="controls" id="popular_destination__arrows">
+                        <div class="arrow prev"></div>
+                        <div class="arrow next"></div>
+                    </div>
+                </div>
+            </div>
+            {% for hotel in hotels %}
+            <div class="section_content">
+
+                <div class="popular_destination__slider" id="popular_destination__slider">
+                    <div class="slide_item">
+                        <a href="single.html" class="slide_item_img">
+                            <div class="sq_parent">
+                                <div class="sq_wrap">
+                                    <div class="sq_content" style="background-image: url({{ asset('front/img/prevnap3.jpg') }})"></div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="single.html" class="slide_item_content">
+                            <div class="flag">
+                                <img src="{{ asset('front/img/turkey.svg') }}" alt="">
+                            </div>
+                            <h3 class="slide_title">
+                                Turkey
+                            </h3>
+                            <p class="slide_text">
+                                Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna.
+                            </p>
+                        </a>
+                        <div class="slide_footer">
+                            <div class="hours">15 tours</div>
+                            <div class="tours_link">
+                                <a href="{{ path('reservationhotel_new', {'id': hotel.id}) }}">RESERVER HOTEL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

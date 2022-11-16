@@ -1,0 +1,60 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} List Reservations{% endblock %}
+
+
+{% block body %}
+
+    <div class="top_destination mainpage-slider">
+        <div class="section_heading">
+            <div class="wrap">
+                <div class="wrap_float">
+                    <table cellspacing="3" bgcolor="#000000" >
+                        <thead>
+                        <br>
+                        <tr bgcolor="#108DB2">
+                            <th><pre>   HEURE DE RESERVATION : </pre></th>
+                        <th><pre>  DATE DEBUT DE RESERVATION : </pre></th>
+                            <th><pre>  Date FIN DE RESERVATION : </pre></th>
+                            <th><pre>  DATE DE RESERVATION : </pre></th>
+                            <th><pre>  VOITURE : </pre></th>
+                            <th><pre>  ETAT : </pre></th>
+                            <th><pre>  ACTIONS : </pre></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reservation in reservations %}
+                            <tr bgcolor="#A9ABAB">
+                                <td> <pre>          {{ reservation.heureres }}</td>
+                                <td> <pre>          {{ reservation.datedeb ? reservation.datedeb|date('Y-m-d') : '' }}</pre> </td>
+                                <td> <pre>          {{ reservation.datefin ? reservation.datefin|date('Y-m-d') : '' }}</pre> </td>
+                                <td> <pre>          {{ reservation.dateres ? reservation.dateres|date('Y-m-d') : '' }}</pre> </td>
+                                <td> <pre>     {{ reservation.idVoiture.nom }}</pre> </td>
+                                <td> <pre> {{ reservation.etat }}</pre></td>
+                                {% if reservation.etat == "Accepté" or reservation.etat == "Refusé" %}
+                                    <td><a href="{{ path('reservation_pdf', {'idres': reservation.idres}) }}" class="btn btn-success" style="height: 35px !important; line-height:30px !important">PDF</a></td>
+                                    {% else %}
+                                    <td>
+                                     <pre><a href="{{ path('reservation_delete', {'idres': reservation.idres}) }}" class="btn btn-success" style="height: 35px !important; line-height:30px !important">SUPPRIMER</a></pre>
+                                        <pre> </pre>
+                                     <pre>       <a href="{{ path('reservation_edit', {'idres': reservation.idres}) }}" class="btn btn-danger" style="height: 35px !important; line-height:30px !important"> MODIFIER</a></pre>
+                                </td>
+                                    {% endif %}
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-content -->
+
+
+
+{% endblock %}

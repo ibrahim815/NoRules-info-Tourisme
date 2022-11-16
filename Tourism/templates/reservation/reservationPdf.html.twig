@@ -1,0 +1,21 @@
+
+
+    <div class="top_destination mainpage-slider">
+        <div class="section_heading">
+            <div class="wrap">
+                <div class="wrap_float" style="text-align: center  "²>
+                     <h1> My Reservation</h1>
+                    Date Debut :{{ reservation.datedeb ? reservation.datedeb|date('Y-m-d') : '' }}<br>
+                    Date Fin : {{ reservation.datefin ? reservation.datefin|date('Y-m-d') : '' }}<br>
+                    Heure : {{ reservation.heureres }}<br>
+                    Date Reservation :{{ reservation.dateres ? reservation.dateres|date('Y-m-d') : '' }}<br>
+                    Etat : {{ reservation.etat }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-content -->
+
+
+

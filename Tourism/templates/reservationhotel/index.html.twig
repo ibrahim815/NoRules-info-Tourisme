@@ -1,0 +1,104 @@
+{% extends 'front.html.twig' %}
+
+{% block title %} List Reservations{% endblock %}
+
+
+{% block body %}
+
+    <div class="top_destination mainpage-slider">
+        <div class="section_heading">
+            <div class="wrap">
+                <div class="wrap_float">
+                    <table cellspacing="3" bgcolor="#000000" >
+                        <thead>
+                        <tr bgcolor="#108DB2">
+                            <th><pre> DATE DEBUT DE RESERVATION</th></pre>
+                            <th><pre> DATE FIN DE RESERVATION</th></pre>
+                            <th><pre> NOMBRE DE PLACE</th></pre>
+                            <th><pre> PRIX</th></pre>
+                            <th><pre> ACTIONS</th></pre>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reservationhotel in reservationhotels %}
+                            <tr bgcolor="#A9ABAB">
+                                <td><pre>      {{ reservationhotel.datedeb ? reservationhotel.datedeb|date('Y-m-d') : '' }}</pre></td>
+                                <td><pre>      {{ reservationhotel.datefin ? reservationhotel.datefin|date('Y-m-d') : '' }}</pre></td>
+                                <td><pre>      {{ reservationhotel.nbrplace }}</pre></td>
+                                <td><pre>      {{ reservationhotel.prix }}</pre></td>
+                                <td>
+                                    <pre>  <pre>     <a href="{{ path('reservationhotel_delete', {'idh': reservationhotel.idRes}) }}" class="btn btn-success">SUPPRIMER</a></pre></pre>
+                                    <pre>  <pre>     <a href="{{ path('reservationhotel_edit', {'idRes': reservationhotel.idRes}) }}" class="btn btn-danger">MODIFIER</a></pre> </pre>
+                                </td>
+                            </td>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-content -->
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
